@@ -1,13 +1,13 @@
 const error = require("../common/error");
 const exceptions = require("../common/exceptions");
 const UserModel = require("../models/userModel"); //esté lo comenté hasta tener sequelize
-// const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 // const jwt = require('jsonwebtoken')
 const config = require("config");
 // const logger = require('../config/server/logger')(__filename)
 
 //pruebo el crear user
-const createUser = async ({ userName, password }) => {
+const createUser = async ({ userName, password, city, country }) => {
   // logger.info(`createUser - userName[${userName}]`)
   console.log("createUser - userName[" + userName + "]");
 
@@ -20,10 +20,12 @@ const createUser = async ({ userName, password }) => {
 
   const data = {
     userName: userName.toLowerCase(),
-    password: password,
-    // password:encryptPassword(password),
-    // createdAt:new Date(),
-    // updatedAt: new Date()
+    // password: password,
+    password: encryptPassword(password),
+    // createdAt: new Date(),
+    // updatedAt: new Date(),
+    city: city,
+    country: country,
   };
   console.log("createUser - data[" + JSON.stringify(data) + "]");
   try {
@@ -38,16 +40,15 @@ const createUser = async ({ userName, password }) => {
     );
   }
 };
-/*
-  const encryptPassword = userPassword => {
-    const salt = bcrypt.genSaltSync()
-    return bcrypt.hashSync(userPassword, salt)
-  }
 
-  const comparePass = (userPass, hashedPass) => {
-    return bcrypt.compare(userPass,hashedPass)
-  }
-*/
+const encryptPassword = (userPassword) => {
+  const salt = bcrypt.genSaltSync();
+  return bcrypt.hashSync(userPassword, salt);
+};
+
+const comparePass = (userPass, hashedPass) => {
+  return bcrypt.compare(userPass, hashedPass);
+};
 
 //esto lo comento hasta tener sequelize:
 const getAll = async (query) => {
