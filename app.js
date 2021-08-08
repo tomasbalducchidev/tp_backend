@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 
 // estas son las rutas, que estan en la carpeta routes creada a mano:
 app.use(apiPrefix + "/users", require("./routes/user.route"));
+app.use(apiPrefix + "/seguridad", require("./routes/seguridad.route"));
 
 //en la carpeta routes, en sus archivos declaro los metodos http.
 
