@@ -1,6 +1,6 @@
 const error = require("../common/error");
 const exceptions = require("../common/exceptions");
-const UserModel = require("../models/userModel");
+// const UserModel = require("../models/userModel");
 // const bcrypt = require('bcrypt')
 // const jwt = require('jsonwebtoken')
 const config = require("config");
@@ -42,6 +42,8 @@ if(userExist){
     return bcrypt.compare(userPass,hashedPass)
   }
 */
+
+/* esto lo comento hasta tener sequelize:
 const getAll = async (query) => {
   console.log("getAll - query[" + JSON.stringify(query) + "]");
   const users = await UserModel.findAll();
@@ -58,6 +60,8 @@ const getById = async (userId) => {
   }
   return user;
 };
+hasta aca comenté hasta tener sequelize */
+
 /*
 const login = async ({userName, password}) => {
   console.log("login - userName["+ userName+"]"+ " - password["+ password+"]" );
@@ -83,7 +87,7 @@ const generateToken = (id,userName)=>{
 
 module.exports = {
   //   createUser,
-  getAll,
-  getById,
+  // getAll, esté lo comenté hasta tener sequelize
+  // getById, esté lo comenté hasta tener sequelize
   //   login,
 };

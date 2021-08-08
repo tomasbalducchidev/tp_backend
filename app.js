@@ -15,7 +15,8 @@ app.listen(port, () => {
 const express = require("express");
 const router = express.Router();
 const app = express();
-// const apiPrefix = config.get("apiPrefix");
+const config = require("config");
+const apiPrefix = config.get("apiPrefix");
 const bodyParser = require("body-parser");
 
 app.use(
@@ -26,7 +27,7 @@ app.use(
 app.use(bodyParser.json());
 
 // estas son las rutas, que estan en la carpeta routes creada a mano:
-// app.use(apiPrefix + "/users", require("./routes/user.route"));
+app.use(apiPrefix + "/users", require("./routes/user.route"));
 
 //en la carpeta routes, en sus archivos declaro los metodos http.
 
