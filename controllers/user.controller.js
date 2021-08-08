@@ -19,6 +19,25 @@ const getById = async (req, res) => {
   return res.status(200).json(user);
 };
 
+//----------------pruebo el crear usuario
+const createUser = async (req, res) => {
+  const data = req.body;
+  console.log("INIT CREATE USER  data:" + JSON.stringify(data));
+  if (!data.userName) {
+    console.log("no name in  CREATE USER  data:" + JSON.stringify(data));
+    throw new error.AppError(exceptions.exceptionType.badRequest);
+  }
+  if (!data.password) {
+    console.log("no pass in  CREATE USER  data:" + JSON.stringify(data));
+    throw new error.AppError(exceptions.exceptionType.badRequest);
+  }
+  const newUser = await userService.createUser(data);
+  console.log(JSON.stringify(newUser));
+  return res.status(201).json(newUser);
+};
+
+//----------------------------
+
 /*
 const createUser = async (req, res) => {
   const data = req.body;
@@ -44,7 +63,7 @@ const login = async (req, res) => {
 };
 */
 module.exports = {
-  //   createUser,
+  createUser, //pruebo el crear usuario
   getAll,
   getById,
   //   login,

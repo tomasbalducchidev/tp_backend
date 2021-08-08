@@ -6,33 +6,39 @@ const UserModel = require("../models/userModel"); //esté lo comenté hasta tene
 const config = require("config");
 // const logger = require('../config/server/logger')(__filename)
 
-/*
-const createUser = async ({userName, password}) => {
-    // logger.info(`createUser - userName[${userName}]`)
-    console.log("createUser - userName["+ userName+"]");
+//pruebo el crear user
+const createUser = async ({ userName, password }) => {
+  // logger.info(`createUser - userName[${userName}]`)
+  console.log("createUser - userName[" + userName + "]");
 
-const userExist = await UserModel.findOne({where: {userName:userName.toLowerCase()}});
-if(userExist){
-  throw new error.AppError(exceptions.exceptionType.users.userExists);
-}
-
-    const data = {
-      userName:userName.toLowerCase(),
-      password:encryptPassword(password),
-      createdAt:new Date(),
-      updatedAt: new Date()
-    }
-    console.log("createUser - data["+ JSON.stringify(data)+"]");
-    try {
-      return await UserModel.create(data)
-    } catch (e) {
-      const errorMessage = `Create User - Detail: ` + e.message
-      // logger.error(errorMessage)
-      console.error("createUser - userName["+ userName+"]");
-      throw new error.AppError(exceptions.exceptionType.database.entity.canNotBeCreated, errorMessage)
-    }
+  const userExist = await UserModel.findOne({
+    where: { userName: userName.toLowerCase() },
+  });
+  if (userExist) {
+    throw new error.AppError(exceptions.exceptionType.users.userExists);
   }
 
+  const data = {
+    userName: userName.toLowerCase(),
+    password: password,
+    // password:encryptPassword(password),
+    // createdAt:new Date(),
+    // updatedAt: new Date()
+  };
+  console.log("createUser - data[" + JSON.stringify(data) + "]");
+  try {
+    return await UserModel.create(data);
+  } catch (e) {
+    const errorMessage = `Create User - Detail: ` + e.message;
+    // logger.error(errorMessage)
+    console.error("createUser - userName[" + userName + "]");
+    throw new error.AppError(
+      exceptions.exceptionType.database.entity.canNotBeCreated,
+      errorMessage
+    );
+  }
+};
+/*
   const encryptPassword = userPassword => {
     const salt = bcrypt.genSaltSync()
     return bcrypt.hashSync(userPassword, salt)
@@ -86,7 +92,7 @@ const generateToken = (id,userName)=>{
 */
 
 module.exports = {
-  //   createUser,
+  createUser, //pruebo el crear user
   getAll, //esté lo comenté hasta tener sequelize
   getById, //esté lo comenté hasta tener sequelize
   //   login,
