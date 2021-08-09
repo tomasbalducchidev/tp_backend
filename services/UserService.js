@@ -93,7 +93,7 @@ const generateToken = (id,userName)=>{
 */
 
 module.exports = {
-  createUser, //pruebo el crear user
+  createUser,
   getAll, //esté lo comenté hasta tener sequelize
   getById, //esté lo comenté hasta tener sequelize
   //   login,
