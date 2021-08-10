@@ -11,12 +11,12 @@ const getAll = async (req, res) => {
   res.status(200).json(sent);
 };
 
-// const create = async (req,res)=>{
-//     const data = req.body
-//     console.log("create controller - body : "+JSON.stringify(data))
-//     const productoId = await ProductService.create(data)
-//     res.status(201).json({productoId})
-// }
+const create = async (req, res) => {
+  const data = req.body;
+  console.log("create controller - body : " + JSON.stringify(data));
+  const sentId = await SentService.create(data);
+  res.status(201).json({ sentId });
+};
 
 // const actualizar = async (req,res)=>{
 //     const data = req.body
@@ -30,6 +30,6 @@ const getAll = async (req, res) => {
 
 module.exports = {
   getAll,
-  // create,
+  create,
   // actualizar
 };

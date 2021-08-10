@@ -10,18 +10,17 @@ const getAllService = async () => {
   return sent;
 };
 
-// const create = async (data) => {
-//     const {nombre,precio,categoria,estado } = data
-//     console.log("Crear producto:"+ JSON.stringify({nombre,precio,categoria,estado }));
-//     const producto = await productosModel.create({
-//         nombre,
-//         precio,
-//         categoria,
-//         estado
-//     })
+const create = async (data) => {
+  const { de, para, message } = data;
+  console.log("Crear mensaje:" + JSON.stringify({ de, para, message }));
+  const sent = await sentModel.create({
+    de,
+    para,
+    message,
+  });
 
-//     return producto.id;
-// }
+  return sent.id;
+};
 
 // const actualizar = async (id,data) => {
 //     const {nombre,precio,categoria,estado } = data
@@ -39,6 +38,6 @@ const getAllService = async () => {
 
 module.exports = {
   getAllService,
-  // create,
+  create,
   // actualizar
 };

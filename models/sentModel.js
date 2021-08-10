@@ -28,7 +28,7 @@ const SentModel = sequelizeConnection.define(
     },
     isVisible: {
       type: Sequelize.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       field: "isVisible",
       defaultValue: 1,
     },

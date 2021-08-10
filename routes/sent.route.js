@@ -11,9 +11,9 @@ router.get(
   }
 );
 
-// router.post("/", (req, res) => {
-//   routeController.handleRequest(req, res, SentController.create);
-// });
+router.post("/", (req, res) => {
+  routeController.handleRequest(req, res, SentController.create);
+});
 
 // router.patch("/:id", (req, res) => {
 //   routeController.handleRequest(req, res, SentController.actualizar);
