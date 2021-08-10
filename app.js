@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 app.use(apiPrefix + "/users", require("./routes/user.route"));
 app.use(apiPrefix + "/seguridad", require("./routes/seguridad.route"));
 app.use(apiPrefix + "/sent", require("./routes/sent.route"));
+app.use(apiPrefix + "/received", require("./routes/received.route"));
 
 //en la carpeta routes, en sus archivos declaro los metodos http.
 
