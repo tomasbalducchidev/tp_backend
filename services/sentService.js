@@ -5,8 +5,13 @@ const exceptions = require("../common/exceptions");
 const getAllService = async () => {
   //   console.log("getAllService - nombre" + nombre + " - estado: " + estado);
 
-  const sent = await sentModel.findAll();
+  const sent = await sentModel.findAll({
+    where: {
+      isVisible: 1,
+    },
+  });
   console.log("sent return : " + sent);
+
   return sent;
 };
 
