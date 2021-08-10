@@ -15,8 +15,8 @@ router.post("/", (req, res) => {
   routeController.handleRequest(req, res, SentController.create);
 });
 
-// router.patch("/:id", (req, res) => {
-//   routeController.handleRequest(req, res, SentController.actualizar);
-// });
+router.patch("/:idsent", (req, res) => {
+  routeController.handleRequest(req, res, SentController.actualizar);
+});
 
 module.exports = router;

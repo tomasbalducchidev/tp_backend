@@ -22,22 +22,35 @@ const create = async (data) => {
   return sent.id;
 };
 
-// const actualizar = async (id,data) => {
-//     const {nombre,precio,categoria,estado } = data
-//     console.log("actualizar producto:"+ JSON.stringify({nombre,precio,categoria,estado }));
-//     const producto = await productosModel.update({ estado}, {
-//         where: {
-//           id
-//         }
-//       });
-//       if(!producto){
-//           return false
-//       }
-//       return true
-// }
+/*
+await User.update({ lastName: "Doe" }, {
+  where: {
+    lastName: null
+  }
+});
+*/
+
+const actualizar = async (idsent) => {
+  // const { de, para, message, isVisible } = data;
+  // console.log(
+  //   "actualizar mensaje:" + JSON.stringify({ de, para, message, isVisible })
+  // );
+  const sent = await sentModel.update(
+    { isVisible: 0 },
+    {
+      where: {
+        idsent,
+      },
+    }
+  );
+  if (!sent) {
+    return false;
+  }
+  return true;
+};
 
 module.exports = {
   getAllService,
   create,
-  // actualizar
+  actualizar,
 };
