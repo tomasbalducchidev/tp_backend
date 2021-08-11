@@ -11,6 +11,10 @@ router.get(
   }
 );
 
+router.patch("/:idreceived", (req, res) => {
+  routeController.handleRequest(req, res, ReceivedController.actualizar);
+});
+
 // router.post("/", (req, res) => {
 //   routeController.handleRequest(req, res, SentController.create);
 // });

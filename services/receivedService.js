@@ -5,9 +5,32 @@ const exceptions = require("../common/exceptions");
 const getAllService = async () => {
   //   console.log("getAllService - nombre" + nombre + " - estado: " + estado);
 
-  const received = await receivedModel.findAll();
+  const received = await receivedModel.findAll({
+    where: {
+      isVisible: 1,
+    },
+  });
   console.log("received return : " + received);
   return received;
+};
+
+const actualizar = async (idreceived) => {
+  // const { de, para, message, isVisible } = data;
+  // console.log(
+  //   "actualizar mensaje:" + JSON.stringify({ de, para, message, isVisible })
+  // );
+  const received = await receivedModel.update(
+    { isVisible: 0 },
+    {
+      where: {
+        idreceived,
+      },
+    }
+  );
+  if (!received) {
+    return false;
+  }
+  return true;
 };
 
 // const create = async (data) => {
@@ -40,5 +63,5 @@ const getAllService = async () => {
 module.exports = {
   getAllService,
   // create,
-  // actualizar
+  actualizar,
 };

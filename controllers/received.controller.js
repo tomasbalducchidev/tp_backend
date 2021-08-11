@@ -11,6 +11,16 @@ const getAll = async (req, res) => {
   res.status(200).json(received);
 };
 
+const actualizar = async (req, res) => {
+  const data = req.body;
+  const params = req.params;
+  console.log("actualizar controller - params : " + JSON.stringify(params));
+  const id = params.idreceived;
+  console.log("actualizar controller - body : " + JSON.stringify(data));
+  const actualizado = await ReceivedService.actualizar(id, data);
+  res.status(200).json({ actualizado });
+};
+
 // const create = async (req,res)=>{
 //     const data = req.body
 //     console.log("create controller - body : "+JSON.stringify(data))
@@ -31,5 +41,5 @@ const getAll = async (req, res) => {
 module.exports = {
   getAll,
   // create,
-  // actualizar
+  actualizar,
 };
