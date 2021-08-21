@@ -54,6 +54,7 @@ const createUser = async (req, res) => {
   console.log(JSON.stringify(newUser));
   return res.status(201).json(newUser);
 };
+*/
 
 const login = async (req, res) => {
   const data = req.body;
@@ -61,10 +62,10 @@ const login = async (req, res) => {
   const userInfo = await userService.login(data);
   res.json(userInfo);
 };
-*/
+
 module.exports = {
   createUser, //pruebo el crear usuario
   getAll,
   getById,
-  //   login,
+  login,
 };

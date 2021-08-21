@@ -2,7 +2,7 @@ const error = require("../common/error");
 const exceptions = require("../common/exceptions");
 const UserModel = require("../models/userModel"); //esté lo comenté hasta tener sequelize
 const bcrypt = require("bcrypt");
-// const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 const config = require("config");
 // const logger = require('../config/server/logger')(__filename)
 
@@ -69,32 +69,41 @@ const getById = async (userId) => {
 };
 //hasta aca comenté hasta tener sequelize
 
-/*
-const login = async ({userName, password}) => {
-  console.log("login - userName["+ userName+"]"+ " - password["+ password+"]" );
-  const user = await UserModel.findOne({where: {userName:userName.toLowerCase()}})
-  const isMatch = user && (await comparePass(password,user.password))
-  if(!isMatch){
-    throw new error.AppError(exceptions.exceptionType.users.invalidPassword,"userService.login")
+const login = async ({ userName, password }) => {
+  console.log(
+    "login - userName[" + userName + "]" + " - password[" + password + "]"
+  );
+  const user = await UserModel.findOne({
+    where: { userName: userName.toLowerCase() },
+  });
+  const isMatch = user && (await comparePass(password, user.password));
+  if (!isMatch) {
+    throw new error.AppError(
+      exceptions.exceptionType.users.invalidPassword,
+      "userService.login"
+    );
   }
-  const token = generateToken(user.id,user.userName)
-  return {token}
-}
+  const token = generateToken(user.id, user.userName);
+  return { token };
+};
 
-const generateToken = (id,userName)=>{
- return jwt.sign({
-   id:id,
-   userName:userName,
-   rol:"ADMIN"
- },config.get("auth.secret"),{
-   expiresIn: config.get("auth.tokenExpire")
- })
-}
-*/
+const generateToken = (id, userName) => {
+  return jwt.sign(
+    {
+      id: id,
+      userName: userName,
+      rol: "ADMIN",
+    },
+    config.get("auth.secret"),
+    {
+      expiresIn: config.get("auth.tokenExpire"),
+    }
+  );
+};
 
 module.exports = {
   createUser,
   getAll, //esté lo comenté hasta tener sequelize
   getById, //esté lo comenté hasta tener sequelize
-  //   login,
+  login,
 };
